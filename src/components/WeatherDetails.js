@@ -1,6 +1,10 @@
 import React from 'react'
 
-function WeatherDetails() {
+function WeatherDetails(props) {
+    //coverting sunrise bigint to integer
+    let sec = props.sunset;
+    let date = new Date(sec * 1000);
+    let timeStr = `${date.getHours()}:${date.getMinutes()}`;
     return (
         <>
             <article className="widget">
@@ -9,11 +13,11 @@ function WeatherDetails() {
                 </div>
                 <div className="weatherInfo">
                     <div className="temperature">
-                        <span>23.99&deg;</span>
+                        <span>{props.temp}&deg;</span>
                     </div>
                     <div className="description">
-                        <div className="weatherCondition">sunny</div>
-                        <div className="place">Mumbai, IN</div>
+                        <div className="weatherCondition">{props.weatherType}</div>
+                        <div className="place">{props.cityName}</div>
                     </div>
                 </div>
                 <div className="date">{new Date().toLocaleString()}</div>
@@ -24,7 +28,7 @@ function WeatherDetails() {
                                 <i className={"wi wi-sunset"}></i>
                             </p>
                             <p className="extra-info-leftside">
-                                18:30 <br /> Sunset
+                                {timeStr}  <br /> Sunset
                             </p>
                         </div>
 
@@ -34,7 +38,7 @@ function WeatherDetails() {
                                 <i className={"wi wi-humidity"}></i>
                             </p>
                             <p className="extra-info-leftside">
-                                34 <br /> Humidity
+                                {props.humidity} <br /> Humidity
                             </p>
                         </div>
                     </div>
@@ -44,7 +48,7 @@ function WeatherDetails() {
                                 <i className={"wi wi-rain"}></i>
                             </p>
                             <p className="extra-info-leftside">
-                                67 <br /> Pressure
+                                {props.pressure} <br /> Pressure
                             </p>
                         </div>
 
@@ -53,7 +57,7 @@ function WeatherDetails() {
                                 <i className={"wi wi-strong-wind"}></i>
                             </p>
                             <p className="extra-info-leftside">
-                                123 <br /> Wind
+                                {props.speed} <br /> Wind
                             </p>
                         </div>
                     </div>

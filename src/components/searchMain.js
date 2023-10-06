@@ -14,7 +14,7 @@ function SearchMain() {
 
     const getWeatherInfo = async () => {
         try {
-            let url = `http://api.openweathermap.org/data/2.5/weather?q=${searchCity},&appid=72644a9a1dff99dcd27dc90d416ce732`;
+            let url = `http://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=72644a9a1dff99dcd27dc90d416ce732`;
 
             let res = await fetch(url);
             let data = await res.json();
@@ -37,7 +37,7 @@ function SearchMain() {
 
     useEffect(() => {
         getWeatherInfo();
-    }, [])
+    }, []);
 
     return (
         <>
@@ -49,7 +49,7 @@ function SearchMain() {
                     Search City
                 </button>
             </div>
-            <WeatherDetails />
+            <WeatherDetails {...tempInfo}/>
         </>
 
     );
